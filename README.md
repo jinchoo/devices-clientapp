@@ -5,8 +5,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+### `npm install`
+Install the npm dependencies
 
 ### `npm start`
+`* make sure to start the server first and is running on port 3000 or else if using different port then edit the ".env" file and update REACT_APP_API_HOST port to match the server app port`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

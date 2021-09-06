@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory, useParams } from "react-router-dom";
+import { update } from '../reducer/device.reducer';
+import { useDispatch } from 'react-redux';
 
 function UpdateDevice() {
   const {
@@ -11,11 +13,15 @@ function UpdateDevice() {
   } = useForm();
 
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
     axios
       .put(`${process.env.REACT_APP_API_HOST}/devices/${deviceId}`, data)
       .then((response) => {
+        dispatch(update({id: deviceId, data}))
+        console.log('submit', {id: deviceId, data})
+
         history.push("/");
         console.log(response);
       });

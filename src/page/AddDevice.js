@@ -2,9 +2,12 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { add } from '../reducer/device.reducer';
+import { useDispatch } from 'react-redux';
 
 function AddDevice() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -15,8 +18,10 @@ function AddDevice() {
     axios
       .post(`${process.env.REACT_APP_API_HOST}/devices`, data)
       .then((response) => {
+        console.log('response', response);
+
+        dispatch(add(response.data))
         history.push("/");
-        console.log(response);
       });
   };
 

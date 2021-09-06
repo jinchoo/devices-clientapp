@@ -1,28 +1,36 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useSelector, useDispatch } from 'react-redux';
+import { load, remove } from '../reducer/device.reducer';
 function Dashboard() {
-  const [deviceList, setDeviceList] = useState([]);
+  // const [deviceList, setDeviceList] = useState([]);
+  const deviceList = useSelector((state) => state.device)
+  const dispatch = useDispatch()
   const [deviceListSort, setDeviceListSort] = useState(['All']);
   const [deviceSortBy, setDevicesSortBy] = useState("HDD Capacity");
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_HOST}/devices`).then((response) => {
-      setDeviceList(response.data);
-    });
-  }, []);
+    if (deviceList.length === 0) {
+      axios.get(`${process.env.REACT_APP_API_HOST}/devices`).then((response) => {
+        // setDeviceList(response.data);
+        dispatch(load(response.data))
+      });
+    }
+    
+  }, [deviceList, dispatch]);
   console.log("device list", deviceList);
-  const handleDeleteDevice = (deviceId) => {
-    console.log(deviceId);
+  const handleDeleteDevice = (deletedDeviceId) => {
+    console.log(deletedDeviceId);
     axios
-      .delete(`${process.env.REACT_APP_API_HOST}/devices/${deviceId}`)
+      .delete(`${process.env.REACT_APP_API_HOST}/devices/${deletedDeviceId}`)
       .then((response) => {
         console.log(response);
         console.log(deviceList);
-        setDeviceList((devices) =>
-          devices.filter((device) => device.id !== deviceId)
-        );
+        dispatch(remove(deletedDeviceId));
+        // setDeviceList((devices) =>
+        //   devices.filter((device) => device.id !== deviceId)
+        // );
       });
   };
   const handleDeviceChange = (event) => {

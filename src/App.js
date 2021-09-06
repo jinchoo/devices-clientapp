@@ -8,10 +8,10 @@ function App() {
   return (
     <div className="App container mx-auto">
       <Router>
-        <header class="header">
+        <header className="header">
           <Link to="/">
             <img
-              class="header__logo"
+              className="header__logo"
               src="/asset/img/logo.png"
               alt="Ninja RMM"
             />

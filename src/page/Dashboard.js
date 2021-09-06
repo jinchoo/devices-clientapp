@@ -70,7 +70,7 @@ function Dashboard() {
           </div>
         </div>
 
-        <div class="space-y-4 divide-y divide-fuchsia-300">
+        <div className="space-y-4 divide-y divide-fuchsia-300">
           {deviceList
             .filter((device) => {
                 if (deviceListSort.includes('All')) return true;
@@ -93,7 +93,7 @@ function Dashboard() {
             })
             .map((device) => {
               return (
-                <div class="pt-6 flex items-center" key={device.id}>
+                <div className="pt-6 flex items-center" key={device.id}>
                   <div className="flex-initial pr-10">
                     <img
                       src={"/asset/img/" + device.type + ".png"}
@@ -125,15 +125,15 @@ function Dashboard() {
         </div>
         {/* <Link >Add Device</Link> */}
       </div>
-      <div class="dashboard__add-button">
+      <div className="dashboard__add-button">
         <Link
           to="/add-device"
-          class="p-5 w-16 h-16 bg-green-600 rounded-full hover:bg-green-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
+          className="p-5 w-16 h-16 bg-green-600 rounded-full hover:bg-green-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
         >
           <svg
             viewBox="0 0 20 20"
-            enable-background="new 0 0 20 20"
-            class="w-6 h-6 inline-block"
+            enableBackground="new 0 0 20 20"
+            className="w-6 h-6 inline-block"
           >
             <path
               fill="#FFFFFF"
